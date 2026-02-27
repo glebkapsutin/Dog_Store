@@ -1,0 +1,91 @@
+// ===== Переменные =====
+$primary-color: #ff7b54;      // основной цвет (кнопка, акценты)
+$secondary-color: #2b2d42;   // цвет текста заголовков
+$card-bg: #ffffff;           // фон карточки
+$body-bg: #f5f5f5;           // фон страницы
+$border-radius: 12px;        // скругление углов
+$font-family: "Arial", sans-serif;
+
+// ===== Миксин для кнопки =====
+@mixin button-style($bg-color, $text-color) {
+  background-color: $bg-color;
+  color: $text-color;
+  border: none;
+  padding: 10px 18px;
+  border-radius: $border-radius;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+
+  &:hover {
+    background-color: darken($bg-color, 7%);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    background-color: darken($bg-color, 12%);
+  }
+}
+
+// ===== Базовые стили страницы =====
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $font-family;
+  background-color: $body-bg;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+// ===== Стили карточки (вложенность) =====
+.product-card {
+  background-color: $card-bg;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  max-width: 320px;
+
+  // вложенные элементы карточки
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  &__content {
+    padding: 16px 18px;
+  }
+
+  &__title {
+    margin: 0 0 8px;
+    font-size: 20px;
+    color: $secondary-color;
+  }
+
+  &__description {
+    margin: 0 0 12px;
+    font-size: 14px;
+    color: #555555;
+    line-height: 1.4;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__price {
+    font-size: 18px;
+    font-weight: 700;
+    color: $primary-color;
+  }
+
+  &__button {
+    @include button-style($primary-color, #ffffff);
+  }
+}
